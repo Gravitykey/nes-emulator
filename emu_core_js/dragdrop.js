@@ -5,10 +5,11 @@
 // *******************************************
 
 class DragDrop {
-    constructor(machine, el) {
+    constructor(machine, el, callback) {
         this.machine = machine
         this.el = el
         this.init()
+        this.callback = callback
     }
 
     init(){
@@ -26,6 +27,7 @@ class DragDrop {
             file.onload = function (e) {
                 var rom =  new Uint8Array(file.result)
                 self.machine.loadrom(rom)
+                self.callback()
             }
             file.readAsArrayBuffer(f);          // 将f当做数组buffer处理
         }

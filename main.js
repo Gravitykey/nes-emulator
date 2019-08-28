@@ -104,7 +104,13 @@ function __main__() {
     }
 
     // 初始化拖拽
-    let dragDrop = new DragDrop(machine, dragDropEl)
+    let dragDropCallback = function(){
+        // 不管当前模拟是否暂停状态，强制恢复
+        running = false
+        pauseGame()
+    }
+    let dragDrop = new DragDrop(machine, dragDropEl,dragDropCallback)
+
 
     // 绑定按钮事件
     $('#run-machine').addEventListener('click', function () {
